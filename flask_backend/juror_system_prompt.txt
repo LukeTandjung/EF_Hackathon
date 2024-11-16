@@ -27,3 +27,9 @@ Review the case details provided below, keeping in mind your responsibilities an
 
 Case Details:
 {{ case_details_placeholder }}
+
+----------------------------------------------------------------------------------------------------
+
+Now, you will begin your deliberation.
+Make sure your speech is concise and to the point.
+When no progress is being made, you can suggest the direction of the deliberation.

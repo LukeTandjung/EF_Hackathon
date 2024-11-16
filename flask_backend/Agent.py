@@ -1,7 +1,16 @@
+import json
 from openai import OpenAI
 import os
+from Conversation import Conversation, User, System
 from personalities import *
 from Classes import OCEAN_Scores, CaseDetails
+from pydantic import BaseModel
+from typing import Literal
+
+class DeliberationResponse(BaseModel):
+    keep_silent: bool
+    conversation_response: str
+    verdict: Literal["guilty", "not_guilty", "not_decided"]
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 OCEAN_SCORES = ["open", "conscientious", "extrovert", "agree", "neurotic"]
@@ -42,9 +51,66 @@ class Agent:
         assert isinstance(self.ocean_scores, OCEAN_Scores)
         assert isinstance(self.case_details, CaseDetails)
 
-        self.system_prompt = self.generate_system_prompt()
+        self.system_prompt = self._generate_system_prompt()
+    
+    def generate_speech(self, conversation: Conversation):
+        """
+        Generate a speech for the agent to say in the conversation.
+        """
+        this_conversation = conversation.deep_copy()
+        this_conversation.prepend_message(System(self.system_prompt))
+        this_conversation.remove_empty_messages()
+        # print(this_conversation.to_openai())
+        res = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=this_conversation.to_openai(),
+            temperature=0,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                "name": "verdict",
+                "strict": True,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                    "keep_silent": {
+                        "type": "boolean",
+                        "description": "Flag indicating whether the juror chooses to remain silent in this round of conversation."
+                    },
+                    "conversation_response": {
+                        "type": "string",
+                        "description": "The response the juror would give. An empty string indicates silence."
+                    },
+                    "verdict": {
+                        "type": "string",
+                        "enum": [
+                        "guilty",
+                        "not_guilty",
+                        "not_decided"
+                        ],
+                        "description": "The verdict the juror would reach after the deliberation."
+                    }
+                    },
+                    "required": [
+                    "keep_silent",
+                    "conversation_response",
+                    "verdict"
+                    ],
+                    "additionalProperties": False
+                }
+                }
+            }
+        )
+        print(f"{self.name}:")
+        parsed_res = json.loads(res.choices[0].message.content)
+        print(parsed_res["conversation_response"])
+        print(parsed_res["verdict"])
+        print("--------------------------------------------------------------")
+        return User(content=parsed_res["conversation_response"], name=self.name, vote=parsed_res["verdict"])
 
-    def generate_system_prompt(self):
+        
+
+    def _generate_system_prompt(self):
         """
         Generate a system prompt for the agent.
         """
@@ -52,7 +118,7 @@ class Agent:
             prompt = f.read()
         # replace {{ juror_information_placeholder }} with the agent's demographic information
         prompt = prompt.replace("{{ juror_information_placeholder }}", 
-                                self.generate_juror_information_prompt())
+                                self._generate_juror_information_prompt())
         # replace {{ personality_traits_placeholder }} with the agent's personality traits
         prompt = prompt.replace("{{ personality_traits_placeholder }}", 
                                 self.ocean_scores.generate_prompt())
@@ -61,7 +127,7 @@ class Agent:
                                 self.case_details.generate_prompt())
         return prompt
 
-    def generate_juror_information_prompt(self):
+    def _generate_juror_information_prompt(self):
         """
         Generate a prompt for the agent's demographic information.
         """
@@ -73,3 +139,6 @@ if __name__ == "__main__":
     case_details = CaseDetails("Test Case", "Test Details", "Test Prosecution Argument", "Test Defendant Argument")
     agent = Agent("John Doe", 30, "Male", "White", "Democrat", "B.S.", ocean_scores, case_details)
     print(agent.system_prompt)
+
+    conversation = Conversation(model="gpt-4o-mini")
+    agent.generate_speech(conversation)

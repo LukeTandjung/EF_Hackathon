@@ -1,3 +1,4 @@
+import copy
 import tiktoken
 
 from dataclasses import dataclass
@@ -39,7 +40,15 @@ class System(Message):
 class User(Message):
     """User message"""
     content: str
+    name: Optional[str] = None
     role: str = "user"
+    vote: Optional[str] = "not_decided"
+
+    def to_dict(self):
+        return {
+            "role": self.role,
+            "content": f"{self.name}: {self.content}"
+        }
 
 @dataclass
 class Assistant(Message):
@@ -50,7 +59,7 @@ class Assistant(Message):
 
 class Conversation:
     """a conversation is a list of messages"""
-    def __init__(self, model="gpt-4o"):
+    def __init__(self, model="gpt-4o-mini"):
         self.model = model
         self.messages = []
         self.total_cost = 0
@@ -88,8 +97,8 @@ class Conversation:
         """
         convert the conversation to a list of dict
         """
+        # print([message.to_dict() for message in self.messages])
         return [message.to_dict() for message in self.messages]
-        return conversation
 
     def get_cost(self) -> float:
         """
@@ -135,3 +144,9 @@ class Conversation:
         for message in self.messages:
             print(f"{message.role}: {message.content}")
         print("=====================================")
+
+    def deep_copy(self):
+        """
+        Deep copy the conversation
+        """
+        return copy.deepcopy(self)

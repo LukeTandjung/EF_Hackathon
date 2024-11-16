@@ -1,0 +1,238 @@
+{
+	"case": {
+		"name": "Roe vs Wade",
+		"details": "This is a landmark case in the United States of America",
+		"prosecution_argument": "We should not mandate a federal ban on abortion",
+		"defendant_argument": "We should mandate a federal ban on abortion"
+	},
+	"agent": [
+		{
+			"name": "Agent 1",
+			"age": 30,
+			"gender": "Male",
+			"race": "White",
+			"political_view": "Moderate",
+			"education": "Bachelor's",
+			"ocean_score": {
+				"open": 0.65,
+				"conscientious": 0.7,
+				"extrovert": 0.6,
+				"agree": 0.75,
+				"neurotic": 0.4
+			}
+		},
+		{
+			"name": "Agent 2",
+			"age": 45,
+			"gender": "Female",
+			"race": "Black",
+			"political_view": "Liberal",
+			"education": "Master's",
+			"ocean_score": {
+				"open": 0.85,
+				"conscientious": 0.65,
+				"extrovert": 0.7,
+				"agree": 0.8,
+				"neurotic": 0.5
+			}
+		},
+		{
+			"name": "Agent 3",
+			"age": 29,
+			"gender": "Non-Binary",
+			"race": "Asian",
+			"political_view": "Progressive",
+			"education": "Bachelor's",
+			"ocean_score": {
+				"open": 0.9,
+				"conscientious": 0.6,
+				"extrovert": 0.5,
+				"agree": 0.7,
+				"neurotic": 0.3
+			}
+		},
+		{
+			"name": "Agent 4",
+			"age": 52,
+			"gender": "Male",
+			"race": "Hispanic",
+			"political_view": "Conservative",
+			"education": "High School",
+			"ocean_score": {
+				"open": 0.3,
+				"conscientious": 0.8,
+				"extrovert": 0.6,
+				"agree": 0.6,
+				"neurotic": 0.5
+			}
+		},
+		{
+			"name": "Agent 5",
+			"age": 37,
+			"gender": "Female",
+			"race": "White",
+			"political_view": "Liberal",
+			"education": "Doctorate",
+			"ocean_score": {
+				"open": 0.8,
+				"conscientious": 0.7,
+				"extrovert": 0.4,
+				"agree": 0.85,
+				"neurotic": 0.6
+			}
+		},
+		{
+			"name": "Agent 6",
+			"age": 50,
+			"gender": "Male",
+			"race": "Black",
+			"political_view": "Moderate",
+			"education": "Associate's",
+			"ocean_score": {
+				"open": 0.6,
+				"conscientious": 0.75,
+				"extrovert": 0.5,
+				"agree": 0.7,
+				"neurotic": 0.4
+			}
+		},
+		{
+			"name": "Agent 7",
+			"age": 26,
+			"gender": "Female",
+			"race": "Asian",
+			"political_view": "Progressive",
+			"education": "Bachelor's",
+			"ocean_score": {
+				"open": 0.9,
+				"conscientious": 0.6,
+				"extrovert": 0.5,
+				"agree": 0.75,
+				"neurotic": 0.35
+			}
+		},
+		{
+			"name": "Agent 8",
+			"age": 33,
+			"gender": "Male",
+			"race": "White",
+			"political_view": "Libertarian",
+			"education": "Master's",
+			"ocean_score": {
+				"open": 0.7,
+				"conscientious": 0.7,
+				"extrovert": 0.8,
+				"agree": 0.6,
+				"neurotic": 0.3
+			}
+		},
+		{
+			"name": "Agent 9",
+			"age": 41,
+			"gender": "Male",
+			"race": "Hispanic",
+			"political_view": "Conservative",
+			"education": "High School",
+			"ocean_score": {
+				"open": 0.4,
+				"conscientious": 0.85,
+				"extrovert": 0.6,
+				"agree": 0.65,
+				"neurotic": 0.5
+			}
+		},
+		{
+			"name": "Agent 10",
+			"age": 48,
+			"gender": "Female",
+			"race": "Black",
+			"political_view": "Moderate",
+			"education": "Bachelor's",
+			"ocean_score": {
+				"open": 0.65,
+				"conscientious": 0.75,
+				"extrovert": 0.55,
+				"agree": 0.8,
+				"neurotic": 0.45
+			}
+		},
+		{
+			"name": "Agent 11",
+			"age": 22,
+			"gender": "Female",
+			"race": "Asian",
+			"political_view": "Progressive",
+			"education": "Bachelor's",
+			"ocean_score": {
+				"open": 0.85,
+				"conscientious": 0.5,
+				"extrovert": 0.6,
+				"agree": 0.75,
+				"neurotic": 0.4
+			}
+		},
+		{
+			"name": "Agent 12",
+			"age": 36,
+			"gender": "Male",
+			"race": "White",
+			"political_view": "Conservative",
+			"education": "Master's",
+			"ocean_score": {
+				"open": 0.45,
+				"conscientious": 0.8,
+				"extrovert": 0.7,
+				"agree": 0.55,
+				"neurotic": 0.5
+			}
+		},
+		{
+			"name": "Agent 13",
+			"age": 55,
+			"gender": "Male",
+			"race": "Hispanic",
+			"political_view": "Libertarian",
+			"education": "Associate's",
+			"ocean_score": {
+				"open": 0.6,
+				"conscientious": 0.7,
+				"extrovert": 0.65,
+				"agree": 0.65,
+				"neurotic": 0.45
+			}
+		},
+		{
+			"name": "Agent 14",
+			"age": 28,
+			"gender": "Non-Binary",
+			"race": "Black",
+			"political_view": "Progressive",
+			"education": "Bachelor's",
+			"ocean_score": {
+				"open": 0.8,
+				"conscientious": 0.6,
+				"extrovert": 0.6,
+				"agree": 0.8,
+				"neurotic": 0.35
+			}
+		},
+		{
+			"name": "Agent 15",
+			"age": 60,
+			"gender": "Female",
+			"race": "White",
+			"political_view": "Moderate",
+			"education": "Doctorate",
+			"ocean_score": {
+				"open": 0.7,
+				"conscientious": 0.85,
+				"extrovert": 0.5,
+				"agree": 0.75,
+				"neurotic": 0.4
+			}
+		}
+	],
+	"simulation": {
+		"num_conversations": 1
+	}
+}
