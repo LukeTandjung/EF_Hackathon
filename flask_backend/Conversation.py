@@ -42,6 +42,13 @@ class User(Message):
     content: str
     name: Optional[str] = None
     role: str = "user"
+    vote: Optional[str] = "not_decided"
+
+    def to_dict(self):
+        return {
+            "role": self.role,
+            "content": f"{self.name}: {self.content}"
+        }
 
 @dataclass
 class Assistant(Message):
