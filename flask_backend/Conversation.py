@@ -1,3 +1,4 @@
+import copy
 import tiktoken
 
 from dataclasses import dataclass
@@ -39,6 +40,7 @@ class System(Message):
 class User(Message):
     """User message"""
     content: str
+    name: Optional[str] = None
     role: str = "user"
 
 @dataclass
@@ -88,8 +90,8 @@ class Conversation:
         """
         convert the conversation to a list of dict
         """
+        # print([message.to_dict() for message in self.messages])
         return [message.to_dict() for message in self.messages]
-        return conversation
 
     def get_cost(self) -> float:
         """
@@ -135,3 +137,9 @@ class Conversation:
         for message in self.messages:
             print(f"{message.role}: {message.content}")
         print("=====================================")
+
+    def deep_copy(self):
+        """
+        Deep copy the conversation
+        """
+        return copy.deepcopy(self)

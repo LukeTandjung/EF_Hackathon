@@ -1,5 +1,6 @@
 from openai import OpenAI
 import os
+from Conversation import Conversation, User, System
 from personalities import *
 from Classes import OCEAN_Scores, CaseDetails
 
@@ -42,9 +43,25 @@ class Agent:
         assert isinstance(self.ocean_scores, OCEAN_Scores)
         assert isinstance(self.case_details, CaseDetails)
 
-        self.system_prompt = self.generate_system_prompt()
+        self.system_prompt = self._generate_system_prompt()
+    
+    def generate_speech(self, conversation: Conversation):
+        """
+        Generate a speech for the agent to say in the conversation.
+        """
+        this_conversation = conversation.deep_copy()
+        this_conversation.prepend_message(System(self.system_prompt))
+        res = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=this_conversation.to_openai(),
+            temperature=0.5,
+        )
+        print(res.choices[0].message.content)
+        return User(content=res.choices[0].message.content, name=self.name)
 
-    def generate_system_prompt(self):
+        
+
+    def _generate_system_prompt(self):
         """
         Generate a system prompt for the agent.
         """
@@ -52,7 +69,7 @@ class Agent:
             prompt = f.read()
         # replace {{ juror_information_placeholder }} with the agent's demographic information
         prompt = prompt.replace("{{ juror_information_placeholder }}", 
-                                self.generate_juror_information_prompt())
+                                self._generate_juror_information_prompt())
         # replace {{ personality_traits_placeholder }} with the agent's personality traits
         prompt = prompt.replace("{{ personality_traits_placeholder }}", 
                                 self.ocean_scores.generate_prompt())
@@ -61,7 +78,7 @@ class Agent:
                                 self.case_details.generate_prompt())
         return prompt
 
-    def generate_juror_information_prompt(self):
+    def _generate_juror_information_prompt(self):
         """
         Generate a prompt for the agent's demographic information.
         """
