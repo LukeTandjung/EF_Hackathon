@@ -15,17 +15,18 @@ class Deliberation:
     def __init__(self, n_rounds: int, agents: [Agent]):
         self.n_rounds = n_rounds
         self.agents = agents
-        self.conversation = Conversation(model="gpt-4o")
+        self.conversation = Conversation(model="gpt-4o-mini")
 
     def run(self):
         """
         Run the deliberation process.
         """
-        for _ in range(self.n_rounds):
+        for round in range(self.n_rounds):
+            print(f"Round {round + 1}:")
             for agent in self.agents:
                 answer = agent.generate_speech(self.conversation)
                 self.conversation.add_message(answer)
-            self.conversation.pretty_print()    
+        return self.conversation
 
 
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ class Assistant(Message):
 
 class Conversation:
     """a conversation is a list of messages"""
-    def __init__(self, model="gpt-4o"):
+    def __init__(self, model="gpt-4o-mini"):
         self.model = model
         self.messages = []
         self.total_cost = 0

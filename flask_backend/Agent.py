@@ -54,9 +54,11 @@ class Agent:
         res = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=this_conversation.to_openai(),
-            temperature=0.5,
+            temperature=0,
         )
+        print(f"{self.name}:")
         print(res.choices[0].message.content)
+        print("--------------------------------------------------------------")
         return User(content=res.choices[0].message.content, name=self.name)
 
         
