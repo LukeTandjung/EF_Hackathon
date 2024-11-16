@@ -33,7 +33,7 @@ const Index = () => {
       "The prosecution has made some strong points that we can't ignore.",
       "We need to carefully weigh both sides before making our decision.",
       "Let's examine the key evidence one more time."
-    ];
+    ]; // Replace this with messages that 
 
     return {
       id: simulation.messages.length + 1,
