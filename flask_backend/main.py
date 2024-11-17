@@ -47,8 +47,6 @@ def deliberation():
     # Create and run deliberation
     deliberation = Deliberation(agents)
     conversation = deliberation.run()
-    
-    print(conversation.messages)
 
     # Collecting the votes from agents
     votes = []
@@ -128,7 +126,6 @@ def deliberation():
             "most_negative_sway": f"{most_negative_agent}"
         }
     }
-    print(response)
     return response
 
 if __name__ == "__main__":

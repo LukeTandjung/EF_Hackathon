@@ -23,7 +23,7 @@ Roles of Courtroom Participants:
 
 Instructions:
 
-You have been deliberating with your fellow jurors. Based on the conversation so far, update your confidence level in the defendant's guilt.
+You have been deliberating with your fellow jurors. Based on the conversation so far, update your level of persuasion regarding the argument presented.
 
 Case Details:
 {{ case_details_placeholder }}
