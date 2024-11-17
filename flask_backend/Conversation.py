@@ -42,7 +42,7 @@ class User(Message):
     content: str
     name: Optional[str] = None
     role: str = "user"
-    vote: Optional[str] = "not_decided"
+    vote: Optional[float] = None
 
     def to_dict(self):
         return {

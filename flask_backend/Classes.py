@@ -28,11 +28,10 @@ class CaseDetails:
     """
     A class that contains the details of a legal case.
     """
-    def __init__(self, name, details, prosecution_argument, defendant_argument):
+    def __init__(self, name, details, argument):
         self.name = name
         self.details = details
-        self.prosecution_argument = prosecution_argument
-        self.defendant_argument = defendant_argument
+        self.argument = argument
     
     def generate_prompt(self):
         """
@@ -41,6 +40,5 @@ class CaseDetails:
         return "\n".join([
             f"Case name: {self.name}",
             f"Case details: {self.details}",
-            f"Prosecution argument: {self.prosecution_argument}",
-            f"Defendant argument: {self.defendant_argument}"
+            f"Argument: {self.argument}"
         ])
